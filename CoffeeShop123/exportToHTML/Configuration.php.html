@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Configuration.php</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #9876aa;}
+.s4 { color: #6a8759;}
+.s5 { color: #a9b7c6;}
+.s6 { color: #a9b7c6;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Configuration.php</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?php</span>
+<span class="s2">// Connect to the database</span>
+<span class="s3">$dbHost </span><span class="s1">= </span><span class="s4">'your_host'</span><span class="s0">;</span>
+<span class="s3">$dbUser </span><span class="s1">= </span><span class="s4">'your_username'</span><span class="s0">;</span>
+<span class="s3">$dbPass </span><span class="s1">= </span><span class="s4">'your_password'</span><span class="s0">;</span>
+<span class="s3">$dbName </span><span class="s1">= </span><span class="s4">'your_database'</span><span class="s0">;</span>
+
+<span class="s3">$conn </span><span class="s1">= </span><span class="s5">mysqli_connect</span><span class="s1">(</span><span class="s3">$dbHost</span><span class="s0">, </span><span class="s3">$dbUser</span><span class="s0">, </span><span class="s3">$dbPass</span><span class="s0">, </span><span class="s3">$dbName</span><span class="s1">)</span><span class="s0">;</span>
+
+<span class="s2">// Check the connection</span>
+<span class="s0">if </span><span class="s1">(!</span><span class="s3">$conn</span><span class="s1">) {</span>
+    <span class="s0">die</span><span class="s1">(</span><span class="s4">&quot;Connection failed: &quot; </span><span class="s1">. </span><span class="s5">mysqli_connect_error</span><span class="s1">())</span><span class="s0">;</span>
+<span class="s1">}</span>
+
+<span class="s2">// Fetch data from the database</span>
+<span class="s3">$sql </span><span class="s1">= </span><span class="s4">&quot;SELECT * FROM your_table&quot;</span><span class="s0">;</span>
+<span class="s3">$result </span><span class="s1">= </span><span class="s5">mysqli_query</span><span class="s1">(</span><span class="s3">$conn</span><span class="s0">, </span><span class="s3">$sql</span><span class="s1">)</span><span class="s0">;</span>
+
+<span class="s2">// Generate HTML table dynamically</span>
+<span class="s0">echo </span><span class="s4">&quot;&lt;table&gt;&quot;</span><span class="s0">;</span>
+<span class="s0">echo </span><span class="s4">&quot;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;/tr&gt;&quot;</span><span class="s0">;</span>
+<span class="s0">while </span><span class="s1">(</span><span class="s3">$row </span><span class="s1">= </span><span class="s5">mysqli_fetch_assoc</span><span class="s1">(</span><span class="s3">$result</span><span class="s1">)) {</span>
+    <span class="s0">echo </span><span class="s4">&quot;&lt;tr&gt;&quot;</span><span class="s0">;</span>
+    <span class="s0">echo </span><span class="s4">&quot;&lt;td&gt;&quot; </span><span class="s1">. </span><span class="s3">$row</span><span class="s1">[</span><span class="s4">'id'</span><span class="s1">] . </span><span class="s4">&quot;&lt;/td&gt;&quot;</span><span class="s0">;</span>
+    <span class="s0">echo </span><span class="s4">&quot;&lt;td&gt;&quot; </span><span class="s1">. </span><span class="s3">$row</span><span class="s1">[</span><span class="s4">'name'</span><span class="s1">] . </span><span class="s4">&quot;&lt;/td&gt;&quot;</span><span class="s0">;</span>
+    <span class="s0">echo </span><span class="s4">&quot;&lt;/tr&gt;&quot;</span><span class="s0">;</span>
+<span class="s1">}</span>
+<span class="s0">echo </span><span class="s4">&quot;&lt;/table&gt;&quot;</span><span class="s0">;</span>
+
+<span class="s2">// Close the database connection</span>
+<span class="s5">mysqli_close</span><span class="s1">(</span><span class="s3">$conn</span><span class="s1">)</span><span class="s0">;</span>
+<span class="s0">?&gt;</span>
+</pre>
+</body>
+</html>
